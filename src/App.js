@@ -1,15 +1,13 @@
 import './App.css';
 import { StrictMode } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Counter } from './screens/Counter';
+import { BrowserRouter, Route, } from 'react-router-dom';
+import Routes from './routes';
 
 function App() {
   return (
     <StrictMode>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Counter />} index />
-        </Routes>
+        <Routes />
       </BrowserRouter>
     </StrictMode>
   );
