@@ -5,11 +5,9 @@ import Routes from './routes';
 
 function App() {
   return (
-    <StrictMode>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </StrictMode>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 

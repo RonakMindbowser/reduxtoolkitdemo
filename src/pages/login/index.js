@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Grid, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, FormControl, Grid, IconButton, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import loginBackground from "../../assets/images/loginBackground.jpg"
 import loginBg from "../../assets/images/loginBg.jpeg"
@@ -10,6 +10,7 @@ import { isValidEmail, isValidPassword, showCustomToast, toastType } from '../..
 import { useDispatch, useSelector } from 'react-redux';
 import { loginWithPassword } from '../../redux/slices/loginSlice';
 import { useNavigate } from 'react-router-dom';
+import theme from '../../constants/theme';
 export const isLogin = "isLogin"
 
 function Login() {
@@ -53,22 +54,54 @@ function Login() {
                 })
         }
     }
+    const icons = [
+        {
+            icon: () => <FacebookIcon />,
+        },
+        {
+            icon: () => <AppleIcon />,
+        },
+        {
+            icon: () => <GoogleIcon />,
+        },
+        {
+            icon: () => <TwitterIcon />,
+        },
+    ]
 
     return (
-        <Grid container component={'main'} >
-            <Grid
+        <Grid container component={'main'}
+            sx={{
+                backgroundImage: `url(${loginBg})`,
+                // backgroundColor: "blue",
+                backgroundRepeat: 'no-repeat',
+
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: "100vh",
+                margin: 0,
+                display: {
+                    md: 'flex',
+                    xl: "flex",
+                    lg: "flex",
+                    // xs: "grid",
+                    // sm: "grid",
+                },
+            }}>
+            {/* <Grid
                 xs={12}
                 sm={12}
                 md={12}
                 xl={12}
                 sx={{
                     backgroundImage: `url(${loginBg})`,
+                    // backgroundColor: "blue",
                     backgroundRepeat: 'no-repeat',
-                    backgroundColor: (t) =>
-                        t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    // height: "100vh",
+                    height: "100vh",
+                    margin: 0,
                     display: {
                         md: 'flex',
                         xl: "flex",
@@ -77,128 +110,144 @@ function Login() {
                         // sm: "grid",
                     },
                 }}
+            > */}
+            <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                xl={6}
+                lg={6}
+                sx={{
+                    display: 'flex',
+                    // display: { md: "flex", sm: "none", xs: "none" },
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: { md: '100%', xs: "30%" },
+                }}
             >
-                <Grid
-                    item
-                    xs={12}
-                    sm={12}
-                    md={6}
-                    xl={6}
-                    lg={6}
+                <Box
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: "100vh",
+                        alignItems: { xs: "center", md: "flex-start" }
                     }}
                 >
+                    <Typography sx={{
+                        color: "yellowgreen",
+                        fontSize: {
+                            xs: "30px",
+                            md: "45px"
+                        },
+                        fontFamily: "cursive"
+                    }}
+                    // variant={theme.breakpoints.between("xs","md")?"h4": 'h3'}
+                    >{"Redux Toolkit Demo"}</Typography>
+                    <Typography sx={{
+                        color: 'yellow',
+                        fontSize: {
+                            xs: "35px",
+                            md: "55px"
+                        },
+                        fontFamily: "cursive"
+                    }}
+                    // variant={'h3'}
+                    >{"Manage App State"}</Typography>
+                </Box>
+            </Grid>
+            <Grid
+                xs={12}
+                sm={12}
+                md={6}
+                xl={6}
+                lg={6}
+                sx={{
+                    display: "flex",
+                    alignItems: {
+                        sm: "center",
+                        xs: "center",
+                        md: "center"
+                    },
+                    height: { md: '100%', xs: "70%" },
+                    justifyContent: "center"
+                }}
+            >
+                <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    backgroundColor: 'rgba(255,255,255,0.8)',
+                    borderRadius: '10px',
+                    width: { xs: "80%", md: "70%", lg: "70%" }
+                }}
+                    pt={{ lg: 7, xs: 5 }}
+                    pr={{ lg: 5, xs: 5 }}
+                    pl={{ lg: 5, xs: 5 }}
+                    pb={{ lg: 7, xs: 5 }}
+                    mb={{ sm: 2, xs: 2 }}
+                >
+                    <FormControl>
+                        <TextField
+                            variant='outlined'
+                            label={'Email'}
+                            placeholder={'Enter email'}
+                            fullWidth
+                            type={'email'}
+                            autoFocus
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+                        <TextField
+                            variant='outlined'
+                            label={'Password'}
+                            autoFocus
+                            placeholder={'Enter password'}
+                            sx={{ mt: 4 }}
+                            fullWidth
+                            type={'password'}
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                        <Button sx={{
+                            backgroundColor: 'hsl(218, 81%, 75%)',
+                            color: "white",
+                            mt: 5
+                        }}
+                            disableRipple
+                            disableTouchRipple
+                            disableElevation
+                            variant='contained'
+                            onClick={onClickLogin}
+                        >
+                            {"Login"}
+                        </Button>
+                    </FormControl>
+                    <Typography
+                        sx={{
+                            alignSelf: "center",
+                            mt: 5,
+                            color: "black"
+                        }}
+                        variant={'body1'}
+                    >{"----- or continue with -----"}</Typography>
                     <Box
                         sx={{
                             display: "flex",
-                            flexDirection: "column",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: 'space-evenly',
+                            mt: 5,
                         }}
                     >
-                        <Typography sx={{
-                            color: "white"
-                        }}
-                            variant={'h3'}
-                        >{"Redux Toolkit Demo"}</Typography>
-                        <Typography sx={{
-                            color: 'hsl(218, 81%, 75%)',
-                            mt: 1
-                        }}
-                            variant={'h3'}
-                        >{"for App State Management"}</Typography>
+                        {icons.map((obj) => (
+                            <IconButton>
+                                <obj.icon />
+                            </IconButton>
+                        ))}
                     </Box>
-                </Grid>
-                <Grid
-                    xs={12}
-                    sm={12}
-                    md={6}
-                    xl={6}
-                    lg={6}
-                    sx={{
-                        display: "flex",
-                        alignItems: {
-                            sm: "flex-start",
-                            md: "center"
-                        },
-                        justifyContent: "center"
-                    }}
-                >
-                    <Box sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        backgroundColor: "white",
-                        borderRadius: '5px',
-                        width: "60%"
-                    }}
-                        pt={{ lg: 7, xs: 5 }}
-                        pr={{ lg: 5, xs: 5 }}
-                        pl={{ lg: 5, xs: 5 }}
-                        pb={{ lg: 7, xs: 5 }}
-                        mb={{ sm: 2, xs: 2 }}
-                    >
-                        <FormControl>
-                            <TextField
-                                variant='outlined'
-                                label={'Email'}
-                                placeholder={'Enter email'}
-                                fullWidth
-                                type={'email'}
-                                value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                            />
-                            <TextField
-                                variant='outlined'
-                                label={'Password'}
-                                placeholder={'Enter password'}
-                                sx={{ mt: 4 }}
-                                fullWidth
-                                type={'password'}
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                            />
-                            <Button sx={{
-                                backgroundColor: 'hsl(218, 81%, 75%)',
-                                color: "white",
-                                mt: 5
-                            }}
-                                disableRipple
-                                disableTouchRipple
-                                disableElevation
-                                variant='contained'
-                                onClick={onClickLogin}
-                            >
-                                {"Login"}
-                            </Button>
-                        </FormControl>
-                        <Typography
-                            sx={{
-                                alignSelf: "center",
-                                mt: 5,
-                                color: "black"
-                            }}
-                            variant={'body1'}
-                        >{"or continue with"}</Typography>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
-                                justifyContent: 'space-around',
-                                mt: 5,
-                            }}
-                        >
-                            <FacebookIcon />
-                            <AppleIcon />
-                            <GoogleIcon />
-                            <TwitterIcon />
-                        </Box>
-                    </Box>
-                </Grid>
+                </Box>
             </Grid>
+            {/* </Grid> */}
         </Grid>
     )
 }

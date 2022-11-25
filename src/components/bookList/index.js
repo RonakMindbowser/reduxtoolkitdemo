@@ -1,5 +1,5 @@
 
-import { Box, Card, CardActions, CardContent, Grid, Paper, Typography, Button } from '@mui/material'
+import { Box, Card, CardActions, CardContent, Grid, Paper, Typography, Button, CircularProgress } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBook, editBook, getAllBooks } from '../../redux/slices/bookSlice';
@@ -54,6 +54,7 @@ function BookList() {
         <Box sx={{
             backgroundColor: 'white',
             m: 4,
+            mt: 6,
             display: "flex",
             p: 4,
             // alignItems: "center",
@@ -61,33 +62,38 @@ function BookList() {
             borderRadius: "10px",
             flexDirection: "column",
             // color:"lightgrey",
-            boxShadow: '1px 1px 1px 9px rgba(0, 0, 0, 0.1)',
+            // boxShadow: '1px 1px 1px 9px rgba(0, 0, 0, 0.1)',
+            backgroundImage: "linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);",
             // boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
         }}>
             <Typography
-                variant='h3'
+                variant='h4'
                 sx={{
                     alignSelf: "center",
-                    fontFamily: "cursive"
-                    // color: "white"
+                    fontFamily: "cursive",
+                    color: "navy",
+                    fontWeight: "bold"
                 }}
             >{"Collection Of Books"}</Typography>
             <Grid container sx={{ mt: 5, }} spacing={2} >
                 {
-                    bookList.map((obj) => {
+                    bookList.length ? bookList.map((obj) => {
                         return (
                             <Grid item xl={4} lg={4} md={6} xs={12} sm={12} >
                                 <Card variant='elevation' component={Paper} elevation={12} sx={{
                                     height: "300px",
                                     display: "flex",
                                     flexDirection: "column",
-                                    justifyContent: "space-between"
+                                    justifyContent: "space-between",
+                                    borderRadius: '10px',
+                                    backgroundImage: "linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);"
                                 }}>
                                     <CardContent sx={{}}>
                                         <Typography
                                             variant='h5'
                                             sx={{
                                                 color: "black",
+                                                color: "white",
                                                 fontWeight: "bold",
                                                 fontFamily: "monospace"
                                             }}
@@ -96,6 +102,7 @@ function BookList() {
                                             variant='subtitle1'
                                             sx={{
                                                 color: "black",
+                                                color: "white",
                                                 fontWeight: "600",
                                                 fontFamily: "revert",
                                                 mt: 2
@@ -107,6 +114,7 @@ function BookList() {
                                                 display: '-webkit-box',
                                                 overflow: 'hidden',
                                                 WebkitBoxOrient: 'vertical',
+                                                color: "maroon",
                                                 WebkitLineClamp: 2,
                                                 fontFamily: "monospace",
                                                 mt: 1
@@ -137,6 +145,18 @@ function BookList() {
                             </Grid>
                         )
                     })
+                        :
+                        <Box sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            width: 1,
+                        }}>
+                            <CircularProgress size={"60px"}
+                                sx={{
+                                    color: 'black',
+                                }} />
+                        </Box>
                 }
             </Grid>
             <EditBook

@@ -76,13 +76,18 @@ export const deleteBook = createAsyncThunk("book/deleteBook", async (payload) =>
     }
 })
 
+let initialState = {
+    loading: false,
+    bookList: [],
+    error: null,
+    success: false,
+}
+
 export const bookSlice = createSlice({
     name: "book",
-    initialState: {
-        loading: false,
-        bookList: [],
-        error: null,
-        success: false,
+    initialState: initialState,
+    reducers: {
+        reset: (state) => initialState,
     },
     extraReducers: (builder) => {
         //add new book Case
@@ -194,4 +199,5 @@ export const bookSlice = createSlice({
 })
 
 const bookReducer = bookSlice.reducer;
+export const { reset: bookReset } = bookSlice.actions;
 export default bookReducer;

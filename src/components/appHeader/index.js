@@ -3,7 +3,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import theme from '../../constants/theme';
-import { singout } from '../../redux/slices/dashboardSlice';
+import { bookReset } from '../../redux/slices/bookSlice';
+import { dashboardReset, singout } from '../../redux/slices/dashboardSlice';
 
 function AppHeader() {
     const [open, setOpen] = React.useState(false);
@@ -18,6 +19,8 @@ function AppHeader() {
                 console.log("originalPromiseResult:", originalPromiseResult);
                 // handle result here
                 if (originalPromiseResult.success) {
+                    dispatch(dashboardReset())
+                    dispatch(bookReset())
                     localStorage.clear()
                     navigate('/login', { replace: true })
                 }
@@ -28,9 +31,15 @@ function AppHeader() {
     }
 
     return (
-        <AppBar position='fixed'
+        <AppBar
+            position='fixed'
             sx={{
-                backgroundImage: "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));",
+                backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb);",
+                right: "unset",
+                width: "90%",
+                marginLeft: "5%",
+                marginTop: '15px',
+                borderRadius: '10px'
             }}
         >
             <Toolbar>

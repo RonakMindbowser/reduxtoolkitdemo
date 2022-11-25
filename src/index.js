@@ -5,10 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import { store } from './redux/store/store';
-import { ThemeProvider } from '@mui/material';
+import { responsiveFontSizes, ThemeProvider } from '@mui/material';
 import theme from './constants/theme';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// theme = responsiveFontSizes(theme);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +19,7 @@ root.render(
         <App />
       </ThemeProvider>
       <ToastContainer autoClose={1000} />
-    </Provider>,
+    </Provider>
   </React.StrictMode>
 );
 

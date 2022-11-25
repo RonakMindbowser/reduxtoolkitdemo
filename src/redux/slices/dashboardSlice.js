@@ -19,12 +19,17 @@ export const singout = createAsyncThunk("dashboard/signout", async () => {
     }
 })
 
+let initialState = {
+    success: false,
+    loading: false,
+    error: null,
+}
+
 export const dashboardSlice = createSlice({
     name: "dashboard",
-    initialState: {
-        success: false,
-        loading: false,
-        error: null,
+    initialState: initialState,
+    reducers: {
+        reset: (state) => initialState,
     },
     extraReducers: (builder) => {
         builder.addCase(singout.pending, (state, action) => {
@@ -54,4 +59,5 @@ export const dashboardSlice = createSlice({
 })
 
 const dashboardReducer = dashboardSlice.reducer;
+export const { reset: dashboardReset } = dashboardSlice.actions;
 export default dashboardReducer;
