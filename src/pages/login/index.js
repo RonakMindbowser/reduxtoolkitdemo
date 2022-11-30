@@ -84,33 +84,9 @@ function Login() {
                     md: 'flex',
                     xl: "flex",
                     lg: "flex",
-                    // xs: "grid",
-                    // sm: "grid",
                 },
             }}>
-            {/* <Grid
-                xs={12}
-                sm={12}
-                md={12}
-                xl={12}
-                sx={{
-                    backgroundImage: `url(${loginBg})`,
-                    // backgroundColor: "blue",
-                    backgroundRepeat: 'no-repeat',
 
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    height: "100vh",
-                    margin: 0,
-                    display: {
-                        md: 'flex',
-                        xl: "flex",
-                        lg: "flex",
-                        // xs: "grid",
-                        // sm: "grid",
-                    },
-                }}
-            > */}
             <Grid
                 item
                 xs={12}
@@ -120,7 +96,6 @@ function Login() {
                 lg={6}
                 sx={{
                     display: 'flex',
-                    // display: { md: "flex", sm: "none", xs: "none" },
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
@@ -142,7 +117,6 @@ function Login() {
                         },
                         fontFamily: "cursive"
                     }}
-                    // variant={theme.breakpoints.between("xs","md")?"h4": 'h3'}
                     >{"Redux Toolkit Demo"}</Typography>
                     <Typography sx={{
                         color: 'yellow',
@@ -152,7 +126,6 @@ function Login() {
                         },
                         fontFamily: "cursive"
                     }}
-                    // variant={'h3'}
                     >{"Manage App State"}</Typography>
                 </Box>
             </Grid>

@@ -8,11 +8,11 @@ const initialStateForExample = {
     value: 1
 }
 
-export const multiplication = createAction("multiply/counter");
-export const incrementAmount = createAction("incrementAmount/counter");
+export const multiplication = createAction("counter/multiply");
+export const incrementAmount = createAction("counter/incrementAmount");
 
-//reducer
-//way1 using builder callback notation
+// //reducer
+// //way1 using builder callback notation
 // export const exampleSlice = createReducer(initialStateForExample, (builder) => {
 //     builder.addCase(multiplication, (state, action) => {
 //         state.value = state.value * 2
@@ -20,11 +20,9 @@ export const incrementAmount = createAction("incrementAmount/counter");
 //     builder.addCase(incrementAmount, (state, action) => {
 //         state.value = state.value + action.payload;
 //     });
-//     builder.addDefaultCase((state, action) => {
-//         state.value = 1
-//     })
 // })
-//way2 using map object notation
+
+// way2 using map object notation
 export const exampleSlice = createReducer(initialStateForExample, {
     [multiplication]: (state, action) => {
         state.value = state.value * 2
@@ -39,10 +37,6 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {
         increment: (state) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
             state.value += 1
         },
         decrement: (state) => {

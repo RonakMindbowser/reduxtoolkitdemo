@@ -1,17 +1,17 @@
-import { createAsyncThunk, createSlice, isRejectedWithValue } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, } from "@reduxjs/toolkit";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseAuth } from "../../utils/firebase";
 import { showCustomToast, toastType } from "../../utils/helpers";
 
-export const loginWithPassword = createAsyncThunk('app/login', async (payload, { getState }) => {
+export const loginWithPassword = createAsyncThunk('app/login', async (payload, { getState, rejectWithValue, fulfillWithValue }) => {
     try {
         const { email, password } = payload
         const response = await signInWithEmailAndPassword(FirebaseAuth, email, password);
         console.log("response :", response);
-        return {
+        return fulfillWithValue({
             success: true,
             response
-        }
+        })
     } catch (error) {
         console.log("Error :", error);
         const errorCode = error.code;
@@ -24,10 +24,10 @@ export const loginWithPassword = createAsyncThunk('app/login', async (payload, {
         else {
             showCustomToast("Something went wrong", toastType.e)
         }
-        return {
+        return rejectWithValue({
             success: false,
             error,
-        }
+        })
     }
 })
 
